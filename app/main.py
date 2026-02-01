@@ -1,8 +1,6 @@
 from fastapi import FastAPI
-from app.api.routes import router
-
+from app.api.v1.api import api_router
 
 app = FastAPI(title="Nostesphere")
 
-app.include_router(router)
-
+app.include_router(api_router, prefix="/api/v1")

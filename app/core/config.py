@@ -19,6 +19,8 @@ class Settings(BaseSettings):
         extra="ignore",               # ignore unknown env vars
     )
 
+    log_level: str = "INFO"
+
 
 @lru_cache
 def get_settings() -> Settings:

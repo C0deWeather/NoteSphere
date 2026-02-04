@@ -1,4 +1,5 @@
 <!doctype html>
+<!-- NoteSphere dashboard layout: header, notes grid, and new-note action button. -->
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -22,7 +23,7 @@
             <div style="width: 24px; height: 24px; display: flex; align-items: center; justify-content: center">
               <iconify-icon icon="lucide:pen-tool" style="font-size: 24px; color: var(--primary)"></iconify-icon>
             </div>
-            NoteSphere
+            <span class="logo-text">NoteSphere</span>
           </a>
 
           <div class="search-container">
@@ -35,7 +36,7 @@
           </div>
 
           <div class="user-actions">
-            <i class="fa fa-times" onclick="hideMenu()"></i>
+            <i class="fa fa-times close-icon" onclick="hideMenu()"></i>
             <button class="logout-btn" data-media-type="banani-button" aria-label="Logout">
               <div style="width: 20px; height: 20px; display: flex; align-items: center; justify-content: center">
                 <iconify-icon icon="lucide:log-out" style="font-size: 20px"></iconify-icon>
@@ -43,7 +44,7 @@
             </button>
             <img src="https://storage.googleapis.com/banani-avatars/avatar%2Ffemale%2F25-35%2FEuropean%2F3" alt="User Avatar" class="avatar" data-media-type="banani-button" />
           </div>
-          <i class="fa fa-bars" onclick="showMenu()"></i>
+          <i class="fa fa-bars menu-icon" onclick="showMenu()"></i>
         </nav>
 
         <!-- Main Content -->

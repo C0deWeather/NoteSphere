@@ -9,6 +9,8 @@ class Settings(BaseSettings):
 
     # Security
     secret_key: str
+    access_token_exp_minutes: int = 30
+    algorithm: str = "HS256"
 
     # Database
     database_url: str

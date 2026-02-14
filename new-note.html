@@ -1,0 +1,42 @@
+﻿<!doctype html>
+<!-- NoteSphere new note layout: typing, draft saving, save/cancel actions. -->
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@200;300;400;500;600;700&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+    <title>New Note - NoteSphere</title>
+    <link rel="stylesheet" href="css/main.css" />
+    <link rel="stylesheet" href="css/new-note.css" />
+  </head>
+  <body>
+    <div class="export-wrapper">
+      <div class="app-container">
+        <div class="note-shell">
+          <header class="note-header">
+            <a class="note-logo" href="dashboard.html">
+              <span>NoteSphere</span>
+            </a>
+            <div class="note-header-actions">
+              <button class="btn-ghost" id="cancel-btn" type="button">Cancel</button>
+              <button class="btn-primary" id="save-btn" type="button">Save Note</button>
+            </div>
+          </header>
+
+          <section class="note-editor">
+            <input class="note-title-input" id="note-title" type="text" placeholder="Untitled note" autocomplete="off" />
+            <div class="note-meta">
+              <span id="draft-status">Draft not saved</span>
+              <span id="draft-time"></span>
+            </div>
+            <textarea class="note-body-input" id="note-body" placeholder="Start typing your thoughts..." spellcheck="true"></textarea>
+            <div class="note-tip">Drafts save automatically. Press Ctrl+S / Cmd+S to save instantly.</div>
+          </section>
+        </div>
+      </div>
+    </div>
+    <script src="./new-note.js"></script>
+  </body>
+</html>

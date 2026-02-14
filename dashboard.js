@@ -10,37 +10,26 @@ function hideMenu() {
 }
 
 //when user clicks the "New Note" button, they are redirected to the new-note.html page where they can create a new note. This is done by adding a click event listener to the floating action button (FAB) that changes the window location to the new-note.html page.
-document.querySelector('.fab').addEventListener('click', () => {
-  window.location.href = 'new-note.html';
+document.addEventListener('DOMContentLoaded', () => {
+  const fab = document.querySelector('.fab');
+  if (!fab) return;
+  fab.addEventListener('click', () => {
+    window.location.href = 'new-note.html';
+  });
 });
 
-//object to hold the notes data for the dashboard, which will be rendered dynamically in the HTML.
-const notes = [
-  {
-    title: 'Project Alpha Brainstorming',
-    body: 'Key objectives for Q3 include refining the user onboarding flow...',
-    updatedAt: 'Updated 2 hours ago',
-  },
-  {
-    title: 'Grocery List',
-    body: 'Milk (Oat) - Eggs - Spinach - Avocados - Chicken breast - Brown rice - Coffee beans (medium roast',
-    updatedAt: 'Updated yesterday',
-  },
-  {
-    title: 'Meeting Notes : Design Review',
-    body: 'Attendees: Sarah, Mike, Jessica. Feedback on the new dashboard layout was generally positive...',
-    updatedAt: 'Updated Oct 24, 2023',
-  },
-  {
-    title: 'Book Recommendations',
-    body: '"Atomic Habits" by James Clear "Deep Work" by Cal Newport "The Design of Everyday Things" by Don Norman "Refactoring UI" by Adam Wathan &amp; Steve Schoger',
-    updatedAt: 'Updated Oct 12, 2023',
-  },
-];
+// Retrieves the existing notes from localStorage, parses them, and stores them in the notes variable. If there are no notes, it initializes an empty array.
+const NOTES_KEY = 'notesphere_notes_v1';
+
+const stored = localStorage.getItem(NOTES_KEY);
+const notes = stored ? JSON.parse(stored) : [];
 
 //HTML element where the notes will be displayed on the dashboard.
 // Selects the container element where the notes will be displayed on the dashboard.
 const notesGrid = document.querySelector('.notes-grid');
+
+// Clear the notes grid before rendering (useful if you want to re-render after adding/editing notes)
+notesGrid.innerHTML = '';
 
 //DOM manipulation to render the notes on the dashboard by iterating over the notes array and creating a note card for each note, appending it to the notes grid.
 // Iterates over the notes array and creates a note card for each note, appending it to the notes grid.

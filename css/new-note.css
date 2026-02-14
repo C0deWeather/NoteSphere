@@ -1,0 +1,157 @@
+:root {
+  --note-surface: #f6f8f4;
+  --note-ink: #0b0b0b;
+  --note-muted: #6f756f;
+  --note-shadow: 0 24px 60px rgba(8, 8, 8, 0.08);
+}
+
+body {
+  margin: 0;
+}
+
+.note-shell {
+  width: min(1100px, 100%);
+  margin: 0 auto;
+  padding: 28px 32px 48px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.note-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 18px 24px;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+}
+
+.note-logo {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 20px;
+  font-weight: 600;
+  color: var(--foreground);
+  text-decoration: none;
+}
+
+.note-header-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.note-header-actions button {
+  height: 40px;
+  padding: 0 18px;
+  border-radius: 999px;
+  border: 1px solid transparent;
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 600;
+  font-size: 14px;
+  cursor: pointer;
+  transition:
+    transform 0.2s,
+    box-shadow 0.2s,
+    background-color 0.2s;
+}
+
+.btn-ghost {
+  background: transparent;
+  border-color: var(--border);
+  color: var(--foreground);
+}
+
+.btn-primary {
+  background: var(--primary);
+  color: var(--primary-foreground);
+  box-shadow: 0 10px 24px rgba(0, 196, 68, 0.25);
+}
+
+.btn-primary:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  box-shadow: none;
+}
+
+.note-editor {
+  background: var(--note-surface);
+  border-radius: 24px;
+  padding: 28px 32px 32px;
+  box-shadow: var(--note-shadow);
+  border: 1px solid rgba(0, 0, 0, 0.04);
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  min-height: 65vh;
+}
+
+.note-title-input {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 32px;
+  font-weight: 600;
+  line-height: 1.2;
+  border: none;
+  background: transparent;
+  color: var(--note-ink);
+  outline: none;
+  width: 100%;
+}
+
+.note-body-input {
+  flex: 1;
+  width: 100%;
+  border: none;
+  resize: vertical;
+  min-height: 320px;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 16px;
+  line-height: 1.7;
+  background: transparent;
+  color: var(--note-ink);
+  outline: none;
+}
+
+.note-meta {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 13px;
+  color: var(--note-muted);
+  font-family: 'DM Sans', sans-serif;
+}
+
+.note-tip {
+  font-size: 13px;
+  color: var(--note-muted);
+  font-family: 'DM Sans', sans-serif;
+}
+
+@media (max-width: 768px) {
+  .note-shell {
+    padding: 20px 16px 36px;
+  }
+
+  .note-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .note-header-actions {
+    width: 100%;
+    justify-content: flex-end;
+  }
+
+  .note-title-input {
+    font-size: 26px;
+  }
+
+  .note-editor {
+    padding: 22px 20px 24px;
+  }
+}

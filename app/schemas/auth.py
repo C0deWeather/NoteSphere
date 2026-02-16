@@ -1,7 +1,7 @@
 from pydantic import BaseModel, EmailStr, ConfigDict, Field
-from .users import User
+from app.db.models.user import User
 
-class UserSignup(BaseModel):
+class SignupRequest(BaseModel):
     full_name: str
     email: EmailStr
     password: str = Field(
@@ -20,7 +20,7 @@ class UserSignup(BaseModel):
         }
     )
 
-class UserLoginRequest(BaseModel):
+class LoginRequest(BaseModel):
     email: EmailStr
     password: str
 
@@ -33,7 +33,7 @@ class UserLoginRequest(BaseModel):
         }
     )
 
-class UserLoginResponse(BaseModel):
+class LoginResponse(BaseModel):
     access_token: str
     token_type: str = "bearer"
     user: User

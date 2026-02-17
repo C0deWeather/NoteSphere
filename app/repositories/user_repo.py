@@ -1,5 +1,5 @@
 from dataclasses import dataclass, field
-from db.models.user import User
+from app.db.models.user import User
 from datetime import datetime, timezone
 
 

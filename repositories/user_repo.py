@@ -4,7 +4,7 @@ from datetime import datetime, timezone
 
 
 @dataclass
-class AppState:
+class InappTempMemory:
     next_id = 1
     users_by_email: dict[str, User] = field(default_factory=dict)
 
@@ -23,6 +23,4 @@ class AppState:
         self.users_by_email[email] = user
         self.next_id += 1
         return user
-
-    def get_user_by_email(self, email: str) -> User | None:
-        return self.users_by_email.get(email)
+        

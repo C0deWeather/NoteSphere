@@ -1,4 +1,18 @@
-﻿//localStorage Key = Folder name
+﻿function initNotePage() {
+  const editId = localStorage.getItem('editNoteId');
+  if (editId) {
+    loadNoteForEditing();
+  } else {
+    loadDraft();
+  }
+}
+
+// Initialize the note page when the DOM content is loaded. This ensures that all the elements are available before we try to access them. It checks if there is an editNoteId in localStorage to determine if the user is editing an existing note or creating a new one, and loads the appropriate data accordingly.
+document.addEventListener('DOMContentLoaded', () => {
+  initNotePage();
+});
+
+//localStorage Key = Folder name
 //Version = Folder version
 const DRAFT_KEY = 'notesphere_draft_v1';
 const NOTES_KEY = 'notesphere_notes_v1';
@@ -99,7 +113,30 @@ function loadDraft() {
   updateSaveState();
 }
 
-//save note to localStorage and clear the draft. When the user clicks the "Save Note" button, this function checks if there is any content to save. If there is, it creates a new note object with a unique ID, title, body, and timestamp. It then retrieves the existing notes from localStorage, adds the new note to the beginning of the list, and saves it back to localStorage. Finally, it clears the draft and redirects the user to the dashboard.
+//for editing existing notes, load the note data into the draft when new-note.html is opened with an editNoteId in localStorage. This allows users to edit their existing notes by pre-filling the title and body fields with the note's current content. If the note is not found or there is an error parsing the stored notes, it clears the editNoteId from localStorage to prevent issues.
+function loadNoteForEditing() {
+  const editId = localStorage.getItem('editNoteId');
+  if (!editId) return; // no note to edit
+
+  const storedNotes = localStorage.getItem(NOTES_KEY);
+  if (!storedNotes) return;
+
+  const notes = JSON.parse(storedNotes);
+  const note = notes.find((n) => n.id === editId);
+  if (!note) return;
+
+  // Populate the inputs
+  titleInput.value = note.title;
+  bodyInput.value = note.body;
+
+  // Remember last saved time
+  if (note.updatedAt) {
+    lastSavedAt = new Date(note.updatedAt);
+    setStatus('Editing note', lastSavedAt);
+  }
+}
+
+//SAVE NOTE FUNCTION
 function saveNote() {
   if (!hasContent()) {
     setStatus('Nothing to save');
@@ -107,20 +144,31 @@ function saveNote() {
   }
 
   const payload = getDraftPayload();
-  const note = {
-    id: typeof crypto !== 'undefined' && crypto.randomUUID ? crypto.randomUUID() : `note-${Date.now()}`,
-    title: payload.title || 'Untitled note',
-    body: payload.body,
-    updatedAt: new Date().toISOString(),
-  };
-
+  const editId = localStorage.getItem('editNoteId'); // check if editing
   const existing = localStorage.getItem(NOTES_KEY);
   const notes = existing ? JSON.parse(existing) : [];
-  notes.unshift(note);
+
+  if (editId) {
+    // ✅ Update existing note
+    const index = notes.findIndex((n) => n.id === editId);
+    if (index !== -1) {
+      notes[index] = { ...notes[index], title: payload.title || 'Untitled note', body: payload.body, updatedAt: new Date().toISOString() };
+    }
+    localStorage.removeItem('editNoteId');
+  } else {
+    // ✅ Add new note
+    const note = {
+      id: typeof crypto !== 'undefined' && crypto.randomUUID ? crypto.randomUUID() : `note-${Date.now()}`,
+      title: payload.title || 'Untitled note',
+      body: payload.body,
+      updatedAt: new Date().toISOString(),
+    };
+    notes.unshift(note);
+  }
+
   localStorage.setItem(NOTES_KEY, JSON.stringify(notes));
   localStorage.removeItem(DRAFT_KEY);
   setStatus('Note saved');
-
   window.location.href = 'dashboard.html';
 }
 
@@ -148,5 +196,3 @@ window.addEventListener('keydown', (event) => {
   event.preventDefault();
   saveNote();
 });
-
-loadDraft();

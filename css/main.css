@@ -196,7 +196,7 @@ search-container-div {
 
 .note-card {
   background-color: var(--card);
-  border: 1px solid var(--border);
+  border: none;
   border-radius: var(--radius-lg);
   padding: 24px;
   display: flex;
@@ -248,10 +248,111 @@ search-container-div {
   color: var(--muted-foreground);
   margin-top: auto;
   padding-top: 12px;
-  border-top: 1px solid var(--muted);
+  border-top: none;
   display: flex;
   justify-content: space-between;
   align-items: center;
+}
+
+.note-delete-btn {
+  border: none;
+  background-color: var(--primary);
+  color: var(--primary-foreground);
+  border-radius: var(--radius-md);
+  padding: 6px 12px;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  transition:
+    filter 0.2s,
+    transform 0.2s;
+}
+
+.note-delete-btn:hover {
+  filter: brightness(0.95);
+}
+
+/* Delete confirmation modal */
+.confirm-modal-overlay {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+  background: rgba(0, 0, 0, 0.45);
+  backdrop-filter: blur(3px);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s ease;
+  z-index: 120;
+}
+
+.confirm-modal-overlay.is-open {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.confirm-modal {
+  width: min(440px, 100%);
+  background: var(--background);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  box-shadow: 0 24px 48px rgba(0, 0, 0, 0.2);
+  padding: 22px;
+  transform: translateY(8px) scale(0.98);
+  transition: transform 0.2s ease;
+}
+
+.confirm-modal-overlay.is-open .confirm-modal {
+  transform: translateY(0) scale(1);
+}
+
+.confirm-modal-title {
+  margin: 0 0 10px;
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--foreground);
+}
+
+.confirm-modal-message {
+  margin: 0;
+  font-size: 14px;
+  line-height: 1.6;
+  color: var(--muted-foreground);
+}
+
+.confirm-modal-actions {
+  margin-top: 20px;
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+}
+
+.confirm-modal-cancel,
+.confirm-modal-delete {
+  border: none;
+  border-radius: 10px;
+  height: 40px;
+  padding: 0 16px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.confirm-modal-cancel {
+  background: #f2f2f2;
+  color: #1a1a1a;
+}
+
+.confirm-modal-delete {
+  background: #00c444;
+  color: #ffffff;
+}
+
+.confirm-modal-cancel:hover,
+.confirm-modal-delete:hover {
+  filter: brightness(0.97);
 }
 
 /* Floating Action Button */
@@ -367,5 +468,19 @@ search-container-div {
 
   .logo {
     gap: 0;
+  }
+
+  .confirm-modal {
+    padding: 18px;
+    border-radius: 14px;
+  }
+
+  .confirm-modal-actions {
+    justify-content: stretch;
+  }
+
+  .confirm-modal-cancel,
+  .confirm-modal-delete {
+    flex: 1;
   }
 }

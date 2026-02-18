@@ -1,7 +1,9 @@
-from pydantic import BaseModel, Emailstr
+from pydantic import BaseModel, EmailStr
+from datetime import datetime
 
 class User(BaseModel):
     id: int
-    email: Emailstr
-    password: str
-    
+    first_name: str
+    email: EmailStr
+    created_at: datetime | None = None
+    updated_at: datetime | None = None

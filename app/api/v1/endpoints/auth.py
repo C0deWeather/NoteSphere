@@ -1,9 +1,9 @@
-from fastapi import APIRouter, Depends, status
+from fastapi import APIRouter, Depends, status, HTTPException
 
 from app.schemas.auth import LoginRequest, SignupRequest, LoginResponse
 from app.deps.auth import get_user_by_email
 from app.deps.api import get_user_repo
-from app.services.auth import hash_password
+from app.services.auth_service import hash_password
 
 
 router = APIRouter()
@@ -14,9 +14,16 @@ def signup(
     user_repo = Depends(get_user_repo)) -> dict:
     try:
         password_hash = hash_password(payload.password)
-        user_repo.create_user(payload.email, password_hash)
+        user_repo.create_user(
+            payload.email,
+            payload.first_name,
+            password_hash
+        )
 
         return {"message": "User created"}
     except ValueError as e:
-        raise HTTPException(status_code=400, detail=str(e))
+        raise HTTPException(
+            status_code=status.HTTP_400_BAD_REQUEST,
+            detail=str(e)
+        )
         

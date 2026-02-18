@@ -1,8 +1,8 @@
 from pydantic import BaseModel, EmailStr, ConfigDict, Field
-from app.db.models.user import User
+from app.schemas.users import User
 
 class SignupRequest(BaseModel):
-    full_name: str
+    first_name: str
     email: EmailStr
     password: str = Field(
         ...,
@@ -13,7 +13,7 @@ class SignupRequest(BaseModel):
     model_config = ConfigDict(
         json_schema_extra={
             "example": {
-                "full_name": "John Doe",
+                "first_name": "John",
                 "email": "user@example.com",
                 "password": "password123"
             }
@@ -45,8 +45,10 @@ class LoginResponse(BaseModel):
                 "token_type": "bearer",
                 "user": {
                     "id": 1,
-                    "full_name": "John Doe",
+                    "first_name": "John Doe",
                     "email": "user@example.com",
+                    "created_at": "2023-01-01T00:00:00Z",
+                    "updated_at": "2023-01-01T00:00:00Z"
                 }
             }
         }

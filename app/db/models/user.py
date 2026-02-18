@@ -5,7 +5,7 @@ from datetime import datetime
 @dataclass
 class User():
     id: int
-    full_name: str
+    first_name: str
     email: str
     password_hash: str
     created_at: datetime

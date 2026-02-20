@@ -28,4 +28,7 @@ class InappTempMemory:
         self.users_by_email[email] = user
         self.next_id += 1
         return user
-        
+
+
+def get_user_by_email(repo: InappTempMemory, email: str) -> User | None:
+    return repo.users_by_email.get(email)   

@@ -229,7 +229,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
   const fab = document.querySelector('.fab');
   if (fab) {
-    0;
     fab.addEventListener('click', () => {
       window.location.href = 'new-note.html';
     });

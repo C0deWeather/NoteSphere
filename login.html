@@ -1,0 +1,70 @@
+<!doctype html>
+<!-- Tells the browser this is an HTML5 document -->
+
+<html lang="en">
+  <!-- Root element of the page -->
+  <!-- lang="en" helps accessibility tools and search engines -->
+
+  <head>
+    <!-- Page metadata (not visible on the page) -->
+
+    <meta charset="UTF-8" />
+    <!-- Ensures correct character encoding (letters, symbols, etc.) -->
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- Makes the page responsive on mobile devices -->
+
+    <title>Login - NoteSphere</title>
+    <!-- Text shown on the browser tab -->
+
+    <link rel="stylesheet" href="css/style.css" />
+    <!-- Connects external CSS file for styling -->
+  </head>
+
+  <body>
+    <!-- Everything visible on the page lives inside body -->
+
+    <div class="auth-wrapper">
+      <!-- Wrapper used mainly for centering and layout -->
+
+      <div class="auth-card">
+        <!-- Card container for login UI -->
+
+        <h1>Login</h1>
+        <!-- Page heading -->
+
+        <!-- Login form -->
+        <!-- id="loginForm" is VERY IMPORTANT -->
+        <!-- JavaScript uses this ID to attach submit logic -->
+        <form id="loginForm" novalidate>
+          <!-- novalidate disables browser default validation -->
+          <!-- We want JavaScript to handle validation instead -->
+
+          <label for="email">Email</label>
+          <!-- 'for' connects label to input with same id -->
+
+          <input type="email" id="email" placeholder="Enter your email" />
+          <!-- id="email" is used by JS to read input value -->
+
+          <label for="password">Password</label>
+
+          <input type="password" id="password" placeholder="Enter password" />
+          <!-- Password field -->
+
+          <button type="submit" class="primary-btn">Login</button>
+          <!-- Submit button triggers form submit event -->
+        </form>
+
+        <!-- Link to signup page -->
+        <p class="secondary-link">
+          Don't have an account?
+          <a href="signup.html">Sign Up</a>
+        </p>
+      </div>
+    </div>
+
+    <!-- JavaScript file is loaded LAST -->
+    <!-- This ensures HTML elements exist before JS runs -->
+    <script src="./login.js"></script>
+  </body>
+</html>

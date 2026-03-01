@@ -1,0 +1,136 @@
+/* Common Auth Styles */
+body {
+  margin: 0;
+  font-family: var(--font-family-body, 'Inter', sans-serif);
+  background-color: var(--background, #f9fafb);
+  color: var(--foreground, #0f172a);
+}
+
+.auth-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.auth-card {
+  background-color: var(--card, #ffffff);
+  padding: 40px 32px;
+  border-radius: var(--radius-lg, 12px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.05);
+  width: 100%;
+  max-width: 400px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.auth-card h1 {
+  margin: 0 0 24px 0;
+  font-size: 24px;
+  text-align: center;
+}
+
+.auth-card form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.auth-card label {
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.auth-card input {
+  padding: 12px;
+  font-size: 14px;
+  border: 1px solid var(--input, #e2e8f0);
+  border-radius: var(--radius-md, 8px);
+  outline: none;
+}
+
+.auth-card input:focus {
+  border-color: #00c444; /* updated primary color */
+}
+
+.dob-container {
+  display: flex;
+  gap: 10px;
+  width: 100%;
+}
+
+.dob-select {
+  flex: 1;
+  padding: 12px;
+  font-size: 14px;
+  border: 1px solid var(--input, #e2e8f0);
+  border-radius: var(--radius-md, 8px);
+  outline: none;
+  background-color: white;
+  cursor: pointer;
+}
+
+.dob-select:focus {
+  border-color: #00c444; /* updated primary color */
+}
+
+.primary-btn {
+  padding: 12px;
+  background-color: #00c444; /* updated primary color */
+  color: var(--primary-foreground, #ffffff);
+  border: none;
+  border-radius: var(--radius-md, 8px);
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.primary-btn:hover {
+  background-color: #00b239; /* slightly darker green for hover */
+}
+
+.secondary-link {
+  text-align: center;
+  font-size: 14px;
+}
+
+.secondary-link a {
+  color: #00c444; /* updated primary color */
+  text-decoration: none;
+  font-weight: 500;
+}
+
+/*---------- AUTH PAGES – MOBILE RESPONSIVE -----------*/
+@media (max-width: 480px) {
+  .auth-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center; /* CENTER vertically */
+    padding: 24px 16px;
+    min-height: 100vh; /* allows centering + scrolling */
+  }
+
+  .auth-card {
+    padding: 24px 20px;
+    max-width: 100%;
+    width: 100%;
+    border-radius: 10px;
+    box-shadow: none; /* cleaner mobile look */
+  }
+
+  .auth-card h1 {
+    font-size: 20px;
+    margin-bottom: 16px;
+  }
+
+  .primary-btn {
+    font-size: 15px;
+    padding: 14px;
+  }
+
+  .secondary-link {
+    font-size: 13px;
+  }
+}

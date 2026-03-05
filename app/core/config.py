@@ -11,6 +11,11 @@ class Settings(BaseSettings):
     secret_key: str
     access_token_exp_minutes: int = 30
     algorithm: str = "HS256"
+    cors_origins: list[str] = [
+        "http://localhost",
+        "http://localhost:3000",
+        "http://localhost:8000",
+    ]
 
     # Database
     database_url: str

@@ -1,6 +1,6 @@
-# NoteSphere API
+# NoteSphere
 
-Backend for a note-taking application built with FastAPI.
+A simple web-based note-taking application built with FastAPI and JavaScript.
 
 ## Features
 

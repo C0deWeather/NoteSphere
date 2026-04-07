@@ -28,4 +28,18 @@ def test_successful_login(client, login_payload, signup_payload):
     payload = jwt.decode(token, settings.secret_key, algorithms=[settings.algorithm])
     assert payload["sub"] == login_payload["email"]
 
-    
+def test_login_with_invalid_email(client, login_payload, signup_payload):
+    login_payload["email"] = "someusr@example.com"
+
+    response = client.post("api/v1/auth/login", json=login_payload)
+    assert response.status_code == 401
+
+def test_login_with_invalid_passwd(client, login_payload, signup_payload):
+    # Create user
+    client.post("api/v1/auth/signup", json=signup_payload)
+
+    login_payload["password"] = "wrong_password"
+
+    response = client.post("api/v1/auth/login", json=login_payload)
+    assert response.status_code == 401
+
